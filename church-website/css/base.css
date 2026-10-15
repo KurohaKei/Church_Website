@@ -1,0 +1,49 @@
+body {
+	min-width: 20rem;
+	background: var(--color-paper);
+	color: var(--color-ink);
+	font-family: var(--font-body);
+	line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+	color: var(--color-ink);
+	font-family: var(--font-heading);
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+h1 {
+	margin-bottom: var(--space-2);
+	font-size: clamp(2.25rem, 5vw, 3.5rem);
+}
+
+h2 {
+	margin-bottom: var(--space-2);
+	font-size: 1.75rem;
+}
+
+h3 {
+	margin-bottom: var(--space-1);
+	font-size: 1.35rem;
+}
+
+p + p {
+	margin-top: var(--space-2);
+}
+
+a {
+	color: var(--color-brand-dark);
+	text-underline-offset: 0.18em;
+}
+
+a:hover {
+	color: var(--color-accent);
+}
+
+:focus-visible {
+	outline: 3px solid var(--color-accent);
+	outline-offset: 3px;
+}
