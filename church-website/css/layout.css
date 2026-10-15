@@ -9,6 +9,17 @@
 	z-index: 20;
 	width: min(var(--content-width), calc(100% - 2rem));
 	margin: 0.75rem auto 0;
+	transition: transform 0.35s ease;
+}
+
+.site-header.is-hidden {
+	transform: translateY(calc(-100% - 1rem));
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.site-header {
+		transition: none;
+	}
 }
 
 .header-inner {

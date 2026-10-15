@@ -100,6 +100,117 @@
 	text-align: center;
 }
 
+:root {
+	--color-green: #245443;
+	--color-gold: #c4955a;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+main > section[id] {
+	scroll-margin-top: 90px;
+}
+
+#sectionDots {
+	position: fixed;
+	top: 50%;
+	left: 1.25rem;
+	z-index: 30;
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+	transform: translateY(-50%);
+}
+
+.section-dots-track,
+.section-dots-progress {
+	position: absolute;
+	top: 1rem;
+	bottom: 1rem;
+	left: 50%;
+	width: 2px;
+	transform: translateX(-50%);
+}
+
+.section-dots-track {
+	background: rgb(32 49 44 / 28%);
+}
+
+.section-dots-progress {
+	background: var(--color-green);
+	transform: translateX(-50%) scaleY(0);
+	transform-origin: top;
+	transition: transform 0.15s linear;
+}
+
+.section-dot {
+	position: relative;
+	z-index: 1;
+	display: grid;
+	width: 2rem;
+	height: 2rem;
+	place-items: center;
+	border-radius: 50%;
+}
+
+.section-dot::before {
+	width: 0.75rem;
+	height: 0.75rem;
+	border: 2px solid #ffffff;
+	border-radius: 50%;
+	outline: 1px solid rgb(23 61 52 / 75%);
+	background: rgb(255 255 255 / 58%);
+	content: "";
+	transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.section-dot.is-active::before {
+	transform: scale(1.4);
+	background: var(--color-gold);
+}
+
+.section-dot.is-passed::before {
+	background: var(--color-green);
+}
+
+.section-dot::after {
+	position: absolute;
+	left: calc(100% + 0.5rem);
+	top: 50%;
+	visibility: hidden;
+	transform: translateY(-50%) translateX(-0.25rem);
+	border-radius: 0.2rem;
+	background: var(--color-green);
+	color: #ffffff;
+	content: attr(data-title);
+	font-size: 0.85rem;
+	line-height: 1;
+	opacity: 0;
+	padding: 0.55rem 0.7rem;
+	white-space: nowrap;
+	transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+}
+
+.section-dot:hover::after,
+.section-dot:focus-visible::after {
+	visibility: visible;
+	transform: translateY(-50%) translateX(0);
+	opacity: 1;
+}
+
+.section-dot:focus-visible {
+	outline: 2px solid var(--color-gold);
+	outline-offset: 2px;
+}
+
+@media (max-width: 899px) {
+	#sectionDots {
+		display: none;
+	}
+}
+
 .reveal {
 	opacity: 0;
 	transform: translateY(30px);
@@ -133,6 +244,16 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	.section-dots-progress,
+	.section-dot::before,
+	.section-dot::after {
+		transition: none;
+	}
+
 	.reveal,
 	.reveal.is-visible {
 		opacity: 1;
