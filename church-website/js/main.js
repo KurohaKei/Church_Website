@@ -15,3 +15,32 @@ if (menuToggle && primaryNavigation) {
 		}
 	});
 }
+
+const revealObserver = "IntersectionObserver" in window
+	? new IntersectionObserver((entries, observer) => {
+		entries.forEach((entry) => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add("is-visible");
+				observer.unobserve(entry.target);
+			}
+		});
+	}, { threshold: 0.15 })
+	: null;
+
+window.observeReveals = (root = document) => {
+	const elements = root.matches?.(".reveal")
+		? [root, ...root.querySelectorAll(".reveal")]
+		: root.querySelectorAll?.(".reveal") ?? [];
+
+	elements.forEach((element) => {
+		if (element.classList.contains("is-visible")) return;
+
+		if (revealObserver) {
+			revealObserver.observe(element);
+		} else {
+			element.classList.add("is-visible");
+		}
+	});
+};
+
+window.observeReveals();
