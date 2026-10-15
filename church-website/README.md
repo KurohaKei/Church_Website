@@ -4,7 +4,8 @@ Starter files for the church website. Replace the sample copy and schedule place
 
 ## Structure
 
-- HTML pages live in the project root.
+- `index.html` contains the complete site, with sections linked by the floating navigation.
+- The former page URLs redirect to their matching sections in `index.html` for existing bookmarks.
 - Shared styles are in `css/`; browser scripts are in `js/`.
 - Images, documents, and JSON content belong in `static/`.
 - Event and sermon entries are loaded from `static/data/events.json` and `static/data/sermons.json`.
