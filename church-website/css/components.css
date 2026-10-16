@@ -21,6 +21,15 @@
 
 .menu-toggle {
 	display: none;
+	width: 44px;
+	height: 44px;
+	min-height: 44px;
+	padding: 0;
+}
+
+.menu-toggle svg {
+	width: 16px;
+	height: 16px;
 }
 
 .eyebrow {
